@@ -26,15 +26,20 @@
             justify-content: center;
         }
         .box{
-            width: 400px;
+            width: 650px;
             height: 50px;
             position: relative;
+            overflow: hidden;
         }
-        h1{
+        h1:nth-child(1),
+        h1:nth-child(2),
+        h1:nth-child(3),
+        h1:nth-child(4){
             color: #D2691E;
             line-height: 50px;
             user-select: none;
             position: absolute;
+            display: none;
         }
         .box-run{
             position: relative;
@@ -51,7 +56,10 @@
 <body>
     <div class="container">
         <div class="box">
-            <h1>NGUYỄN ÁNH DƯƠNG</h1>
+            <h1>TRÙM Ctrl+C: NGUYỄN ÁNH DƯƠNG</h1>
+            <h1>THẦN ĐỒNG PHP: PHẠM HOÀNG TUẤN</h1>
+            <h1>TRÙM DATABASE: NGUYỄN TIẾN TRƯỜNG</h1>
+            <h1>TRÙM JS: ĐINH TUẤN ANH</h1>
             <div class="box-run">
             </div>
         </div>
@@ -63,16 +71,23 @@
         var playAudio = document.querySelector('#audio');
         var count = 0;
         var i = 0;
-        var title = document.querySelector('h1');
+        var indexName = 0;
+        var title = document.querySelectorAll('h1');
         function run(){
             let boxRun = document.querySelector('.box-run');
             i+=25;
-            if(count!=((title.innerText.length)-2)){
+            if(count!=((title[indexName].innerText.length)-2)){
+                title[indexName].style.display = 'block';
                 boxRun.style.transform = 'translateX('+i+'px)';
             }else{
+                title[indexName].style.display = 'none'
                 boxRun.style.transform = 'translateX(0px)';
                 count =0;
                 i=0;
+                indexName++;
+                if(indexName>3){
+                    indexName=0;
+                }
             }
             playAudio.play();
             count++;
